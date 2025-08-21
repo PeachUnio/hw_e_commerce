@@ -46,18 +46,16 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
-    def add_product(self, product):
-        if isinstance(product, Product):
-            self.__products.append(product)
-            Category.product_count += 1
-        else:
-            print("Продукт не соответствует условиям!")
-
-    @property
-    def products(self):
+    def __str__(self):
         product_str = ""
         for product in self.__products:
             product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
 
         return product_str
 
+    def add_product(self, product):
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            print("Продукт не соответствует условиям!")
