@@ -10,6 +10,11 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __add__(self, other):
+        pr_1 = self.__price * self.quantity
+        pr_2 = other.__price * other.quantity
+        return pr_1 + pr_2
+
     @classmethod
     def new_product(cls, data_list):
         return cls(name=data_list["name"],
@@ -65,3 +70,4 @@ class Category:
         """Сбрасывает счетчики категорий и продуктов"""
         cls.category_count = 0
         cls.product_count = 0
+
