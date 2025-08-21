@@ -59,3 +59,9 @@ class Category:
             Category.product_count += 1
         else:
             print("Продукт не соответствует условиям!")
+
+    @classmethod
+    def reset_counters(cls):
+        """Сбрасывает счетчики категорий и продуктов"""
+        cls.category_count = 0
+        cls.product_count = 0
