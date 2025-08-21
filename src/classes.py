@@ -71,3 +71,10 @@ class Category:
         cls.category_count = 0
         cls.product_count = 0
 
+    @property
+    def products(self):
+        product_str = ""
+        for product in self.__products:
+            product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+
+        return product_str
