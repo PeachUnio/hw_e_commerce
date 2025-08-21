@@ -7,6 +7,10 @@ from src.classes import Category, Product
 def product_watch():
     return Product("Wacky Watch", "1 TB, Голубой цвет", 5757.57, 4)
 
+@pytest.fixture()
+def product_gloinks():
+    return Product("Gloink", "Маленькие озорняшки, которые крадут все и вся на своем пути", 1, 888)
+
 
 def test_product(product_watch):
     assert product_watch.name == "Wacky Watch"
@@ -61,4 +65,8 @@ def test_new_product():
 
     product.price = 185555.9
     assert product.price == 185555.9
+
+def test_add_product(product_watch, product_gloinks):
+    pr_sum = product_gloinks + product_watch
+    assert pr_sum == 23918.28
 
