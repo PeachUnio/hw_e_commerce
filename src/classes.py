@@ -1,5 +1,6 @@
 class Product:
     """Класс для продуктов"""
+
     name: str
     description: str
     __price: float
@@ -20,10 +21,12 @@ class Product:
     @classmethod
     def new_product(cls, data_list):
         """Метод, который добавляет новый объект класса"""
-        return cls(name=data_list["name"],
-                      description=data_list["description"],
-                      price=data_list["price"],
-                      quantity=data_list["quantity"])
+        return cls(
+            name=data_list["name"],
+            description=data_list["description"],
+            price=data_list["price"],
+            quantity=data_list["quantity"],
+        )
 
     @property
     def price(self):
@@ -38,9 +41,9 @@ class Product:
             self.__price = new_price
 
 
-
 class Category:
     """Класс для категорий"""
+
     name: str
     description: str
     __products: list
@@ -86,16 +89,20 @@ class Category:
         return product_str
 
 
-
 class Smartphone(Product):
-    def __init__(self, name: str,
-                 description: str,
-                 price: float,
-                 quantity: int,
-                 efficiency: float,
-                 model: str,
-                 memory: int,
-                 color: str):
+    """Класс для смартфонов"""
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: float,
+        model: str,
+        memory: int,
+        color: str,
+    ):
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
         self.model = model
@@ -108,15 +115,19 @@ class Smartphone(Product):
         raise TypeError
 
 
-
 class LawnGrass(Product):
-    def __init__(self, name: str,
-                 description: str,
-                 price: float,
-                 quantity: int,
-                 country: str,
-                 germination_period: str,
-                 color: str):
+    """Класс для газона"""
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ):
         super().__init__(name, description, price, quantity)
         self.country = country
         self.germination_period = germination_period
