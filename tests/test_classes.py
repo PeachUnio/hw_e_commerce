@@ -7,6 +7,10 @@ from src.classes import Category, Product
 def product_watch():
     return Product("Wacky Watch", "1 TB, Голубой цвет", 5757.57, 4)
 
+@pytest.fixture()
+def product_gloinks():
+    return Product("Gloink", "Маленькие озорняшки, которые крадут все и вся на своем пути", 1, 888)
+
 
 def test_product(product_watch):
     assert product_watch.name == "Wacky Watch"
@@ -17,6 +21,7 @@ def test_product(product_watch):
 
 @pytest.fixture()
 def category_computers():
+    Category.reset_counters()
     pr1 = Product("Macbook", "Черный корпус, 2003 года", 10096.86, 1)
     pr2 = Product("Sierra", "Супер-компьютер", 1000000.7, 1)
     return Category(
@@ -27,7 +32,7 @@ def category_computers():
 def test_category(category_computers):
     assert category_computers.name == "Компьютеры"
     assert category_computers.description == "Компьютеры, продвинутые машины упрощающие жизнь на каждом шагу."
-    assert category_computers.products == 'Macbook, 10096.86 руб. Остаток: 1 шт.\nSierra, 1000000.7 руб. Остаток: 1 шт.\n'
+    assert str(category_computers) == 'Macbook, 10096.86 руб. Остаток: 1 шт.\nSierra, 1000000.7 руб. Остаток: 1 шт.\n'
     assert category_computers.category_count == 1
     assert category_computers.product_count == 2
 
@@ -60,4 +65,8 @@ def test_new_product():
 
     product.price = 185555.9
     assert product.price == 185555.9
+
+def test_add_product(product_watch, product_gloinks):
+    pr_sum = product_gloinks + product_watch
+    assert pr_sum == 23918.28
 
