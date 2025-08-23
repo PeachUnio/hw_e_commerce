@@ -1,4 +1,5 @@
 class Product:
+    """Класс для продуктов"""
     name: str
     description: str
     __price: float
@@ -11,12 +12,14 @@ class Product:
         self.quantity = quantity
 
     def __add__(self, other):
+        """Метод, позволяющий сложить цену всех продуктов"""
         pr_1 = self.__price * self.quantity
         pr_2 = other.__price * other.quantity
         return pr_1 + pr_2
 
     @classmethod
     def new_product(cls, data_list):
+        """Метод, который добавляет новый объект класса"""
         return cls(name=data_list["name"],
                       description=data_list["description"],
                       price=data_list["price"],
@@ -28,6 +31,7 @@ class Product:
 
     @price.setter
     def price(self, new_price):
+        """Метод, изменяющий цену на объект класса"""
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
         else:
@@ -36,6 +40,7 @@ class Product:
 
 
 class Category:
+    """Класс для категорий"""
     name: str
     description: str
     __products: list
@@ -59,6 +64,7 @@ class Category:
         return product_str
 
     def add_product(self, product):
+        """Метод для добавления нового продукта в категорию"""
         if isinstance(product, Product):
             self.__products.append(product)
             Category.product_count += 1
