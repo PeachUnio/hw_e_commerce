@@ -65,11 +65,11 @@ class Category:
 
     def add_product(self, product):
         """Метод для добавления нового продукта в категорию"""
-        if isinstance(product, Product):
+        if isinstance(product, Product) or isinstance(product, Smartphone) or isinstance(product, LawnGrass):
             self.__products.append(product)
             Category.product_count += 1
         else:
-            print("Продукт не соответствует условиям!")
+            raise TypeError
 
     @classmethod
     def reset_counters(cls):
