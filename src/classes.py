@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class BaseProduct(ABC):
     @abstractmethod
-    def new_product(self):
+    def __add__(self, other):
         pass
 
     @abstractmethod
@@ -11,7 +11,7 @@ class BaseProduct(ABC):
         pass
 
 
-class Product:
+class Product(BaseProduct):
     """Класс для продуктов"""
 
     name: str
