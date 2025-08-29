@@ -1,5 +1,6 @@
 class Product:
     """Класс для продуктов"""
+
     name: str
     description: str
     __price: float
@@ -20,10 +21,12 @@ class Product:
     @classmethod
     def new_product(cls, data_list):
         """Метод, который добавляет новый объект класса"""
-        return cls(name=data_list["name"],
-                      description=data_list["description"],
-                      price=data_list["price"],
-                      quantity=data_list["quantity"])
+        return cls(
+            name=data_list["name"],
+            description=data_list["description"],
+            price=data_list["price"],
+            quantity=data_list["quantity"],
+        )
 
     @property
     def price(self):
@@ -38,9 +41,9 @@ class Product:
             self.__price = new_price
 
 
-
 class Category:
     """Класс для категорий"""
+
     name: str
     description: str
     __products: list
@@ -65,11 +68,11 @@ class Category:
 
     def add_product(self, product):
         """Метод для добавления нового продукта в категорию"""
-        if isinstance(product, Product):
+        if isinstance(product, Product) or isinstance(product, Smartphone) or isinstance(product, LawnGrass):
             self.__products.append(product)
             Category.product_count += 1
         else:
-            print("Продукт не соответствует условиям!")
+            raise TypeError
 
     @classmethod
     def reset_counters(cls):
@@ -84,3 +87,53 @@ class Category:
             product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
 
         return product_str
+
+
+class Smartphone(Product):
+    """Класс для смартфонов"""
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: float,
+        model: str,
+        memory: int,
+        color: str,
+    ):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is Smartphone:
+            return super().__add__(other)
+        raise TypeError
+
+
+class LawnGrass(Product):
+    """Класс для газона"""
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is LawnGrass:
+            return super().__add__(other)
+        raise TypeError
