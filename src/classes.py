@@ -1,3 +1,16 @@
+from abc import ABC, abstractmethod
+
+
+class BaseProduct(ABC):
+    @abstractmethod
+    def new_product(self):
+        pass
+
+    @abstractmethod
+    def price(self):
+        pass
+
+
 class Product:
     """Класс для продуктов"""
 
