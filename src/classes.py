@@ -2,6 +2,8 @@ from abc import ABC, abstractmethod
 
 
 class BaseProduct(ABC):
+    """Базовый класс с общим функционалом для продуктов"""
+
     @abstractmethod
     def __add__(self, other):
         pass
@@ -12,6 +14,7 @@ class BaseProduct(ABC):
 
 
 class MixinProduct:
+    """Миксин, добавляющий функционал для repr()"""
 
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"

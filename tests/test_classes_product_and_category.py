@@ -1,6 +1,6 @@
 import pytest
 
-from src.classes import Category, Product, LawnGrass
+from src.classes import Category, Product
 from tests.test_classes_subclasses import new_grass
 
 
