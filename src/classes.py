@@ -16,7 +16,7 @@ class BaseProduct(ABC):
 class MixinProduct:
     """Миксин, добавляющий функционал для repr()"""
 
-    def __int__(self):
+    def __init__(self):
         print(repr(self))
 
     def __repr__(self):
@@ -36,6 +36,7 @@ class Product(BaseProduct, MixinProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __add__(self, other):
         """Метод, позволяющий сложить цену всех продуктов"""
