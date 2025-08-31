@@ -37,6 +37,8 @@ class Product(BaseProduct, MixinProduct):
         self.__price = price
         self.quantity = quantity
         super().__init__()
+        if self.quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
 
     def __add__(self, other):
         """Метод, позволяющий сложить цену всех продуктов"""
