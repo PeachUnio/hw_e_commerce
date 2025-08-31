@@ -1,6 +1,7 @@
 import pytest
 
 from src.classes import Category, Product
+from tests.test_classes_subclasses import new_grass
 
 
 @pytest.fixture()
@@ -74,3 +75,8 @@ def test_new_product():
 def test_add_product(product_watch, product_gloinks):
     pr_sum = product_gloinks + product_watch
     assert pr_sum == 23918.28
+
+
+def test_repr_product(product_watch, new_grass):
+    assert repr(product_watch) == "Product('Wacky Watch', '1 TB, Голубой цвет', 5757.57, 4)"
+    assert repr(new_grass) == "LawnGrass('Трава', 'Трава растет', 555, 4)"

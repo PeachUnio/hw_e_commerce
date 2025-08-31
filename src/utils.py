@@ -1,5 +1,6 @@
 import json
-from src.classes import Product, Category
+
+from src.classes import Category, Product
 
 
 def add_objects_of_classes(file_path):

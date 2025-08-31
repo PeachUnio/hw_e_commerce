@@ -1,4 +1,29 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class BaseProduct(ABC):
+    """Базовый класс с общим функционалом для продуктов"""
+
+    @abstractmethod
+    def __add__(self, other):
+        pass
+
+    @abstractmethod
+    def price(self):
+        pass
+
+
+class MixinProduct:
+    """Миксин, добавляющий функционал для repr()"""
+
+    def __init__(self):
+        print(repr(self))
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"
+
+
+class Product(BaseProduct, MixinProduct):
     """Класс для продуктов"""
 
     name: str
@@ -11,6 +36,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __add__(self, other):
         """Метод, позволяющий сложить цену всех продуктов"""
