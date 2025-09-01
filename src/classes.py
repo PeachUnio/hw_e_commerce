@@ -111,9 +111,9 @@ class Category:
                     total_prise = total_prise + product.price * product.quantity
                     total_quantity = total_quantity + product.quantity
                 return round(total_prise / total_quantity, 2)
-            return "В списке необходимы продукты"
+            return 0
         except ZeroDivisionError as e:
-            return e
+            return 0
 
     @classmethod
     def reset_counters(cls):
