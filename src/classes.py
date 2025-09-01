@@ -105,10 +105,12 @@ class Category:
     def middle_price(self):
         try:
             if self.__products:
+                total_prise = 0
+                total_quantity = 0
                 for product in self.__products:
-                    total_prise =+ product.price * product.quantity
-                    total_quantity =+ product.quantity
-                return total_prise / total_quantity
+                    total_prise = total_prise + product.price * product.quantity
+                    total_quantity = total_quantity + product.quantity
+                return round(total_prise / total_quantity, 2)
             return "В списке необходимы продукты"
         except ZeroDivisionError as e:
             return e
