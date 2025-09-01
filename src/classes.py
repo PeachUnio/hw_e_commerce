@@ -102,6 +102,17 @@ class Category:
         else:
             raise TypeError
 
+    def middle_price(self):
+        try:
+            if self.__products:
+                for product in self.__products:
+                    total_prise =+ product.price * product.quantity
+                    total_quantity =+ product.quantity
+                return total_prise / total_quantity
+            return "В списке необходимы продукты"
+        except ZeroDivisionError as e:
+            return e
+
     @classmethod
     def reset_counters(cls):
         """Сбрасывает счетчики категорий и продуктов"""
