@@ -37,6 +37,8 @@ class Product(BaseProduct, MixinProduct):
         self.__price = price
         self.quantity = quantity
         super().__init__()
+        if self.quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
 
     def __add__(self, other):
         """Метод, позволяющий сложить цену всех продуктов"""
@@ -99,6 +101,17 @@ class Category:
             Category.product_count += 1
         else:
             raise TypeError
+
+    def middle_price(self):
+        try:
+            total_prise = 0
+            total_quantity = 0
+            for product in self.__products:
+                total_prise = total_prise + product.price * product.quantity
+                total_quantity = total_quantity + product.quantity
+            return round(total_prise / total_quantity, 2)
+        except ZeroDivisionError as e:
+            return 0
 
     @classmethod
     def reset_counters(cls):

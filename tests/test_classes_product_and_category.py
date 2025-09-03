@@ -80,3 +80,17 @@ def test_add_product(product_watch, product_gloinks):
 def test_repr_product(product_watch, new_grass):
     assert repr(product_watch) == "Product('Wacky Watch', '1 TB, Голубой цвет', 5757.57, 4)"
     assert repr(new_grass) == "LawnGrass('Трава', 'Трава растет', 555, 4)"
+
+
+def test_product_error():
+    with pytest.raises(ValueError):
+        Product("Исчезающий парень", "Он исчезает", 34, 0)
+
+
+def test_middle_price(category_computers):
+    assert category_computers.middle_price() == 505048.78
+
+
+def test_middle_price_error():
+    ct = Category("Нечего", "Нечего нет", [])
+    assert ct.middle_price() == 0
